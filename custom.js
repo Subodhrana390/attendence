@@ -80,3 +80,17 @@ document
       };
   });
 
+
+let form = document.getElementById("attendanceForm");
+let msg = document.getElementById("message");
+
+function openFormForTwoHours() {
+  var now = new Date();
+  const scheduledTime = new Date("2024-04-01T15:56:00Z");
+  form.style.display = "block";
+
+  setTimeout(function () {
+    form.style.display = "none";
+    msg.innerText = "No Form Available";
+  }, scheduledTime - now);
+}
