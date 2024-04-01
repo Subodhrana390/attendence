@@ -25,7 +25,6 @@
             const fullName = document.getElementById("fullName").value;
 
             fetch(`https://attendence-nzxm.onrender.com/attendance`, {
-                mode:"no-cors",
                 method: "POST",
                 body: JSON.stringify({ fullName }),
                 headers: {
