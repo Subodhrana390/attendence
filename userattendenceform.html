@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Attendance Form</title>
+</head>
+
+<body>
+    <h2>User Attendance Form</h2>
+    <div class="Message"></div>
+    <form id="attendanceForm">
+        <label for="fullName">User ID:</label>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+        <label for="event">Event Name:</label>
+        <input type="text" id="event" name="event" required><br><br>
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date" required>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="">Select status</option>
+            <option value="present">Present</option>
+            <option value="absent">Absent</option>
+        </select><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="custom.js"></script>
+
+</body>
+
+</html>

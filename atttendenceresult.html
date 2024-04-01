@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Attendance</title>
+</head>
+
+<body>
+    <h2>Check Attendance</h2>
+    <form id="checkAttendanceForm">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required><br><br>
+
+        <button type="submit">Check Attendance</button>
+    </form>
+
+    <div id="attendanceResult"></div>
+
+    <script>
+        document.getElementById("checkAttendanceForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById("fullName").value;
+
+            fetch(`http://localhost:3000/attendance`, {
+                method: "POST",
+                body: JSON.stringify({ fullName }),
+                headers: {
+                    "content-Type": "application/json"
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const attendanceResultDiv = document.getElementById("attendanceResult");
+                    attendanceResultDiv.innerHTML = ""; // Clear previous results
+
+                    if (data.length === 0) {
+                        attendanceResultDiv.textContent = "No attendance records found for this user.";
+                    } else {
+                        const resultList = document.createElement("ul");
+                        data.forEach(attendance => {
+                            const listItem = document.createElement("li");
+                            listItem.textContent = `Date: ${new Date(attendance.date).toLocaleDateString()}, Status: ${attendance.status}  , Event : ${attendance.event}`;
+                            resultList.appendChild(listItem);
+                        });
+                        attendanceResultDiv.appendChild(resultList);
+                    }
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                    document.getElementById("attendanceResult").textContent = "Failed to fetch attendance data. Please try again later.";
+                });
+        });
+    </script>
+</body>
+
+</html>

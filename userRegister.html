@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Society Member Registration</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Society Member Registration</h1>
+
+    <form id="registrationForm">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required /><br />
+        <label for="branch">Branch:</label>
+        <input type="text" id="branch" name="branch" required /><br />
+        <label for="section">Section:</label>
+        <input type="text" id="section" name="section" required /><br />
+        <label for="urn">URN:</label>
+        <input type="text" id="urn" name="urn" required /><br />
+        <label for="crn">CRN:</label>
+        <input type="text" id="crn" name="crn" required /><br />
+        <label for="year">Year :</label>
+        <select id="year" name="year" required>
+            <option value="">Select Year</option>
+            <option value="1">D1</option>
+            <option value="2">D2</option>
+            <option value="3">D3</option>
+        </select><br><br>
+        <label for="photo">Photo:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required /><br />
+        <button type="submit">Register</button>
+    </form>
+
+    <h2>Registered Members</h2>
+    <ul id="registeredMembers"></ul>
+
+    <script>
+        document
+            .getElementById("registrationForm")
+            .addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(this);
+
+                try {
+                    const response = await fetch("http://localhost:3000/register", {
+                        method: "POST",
+                        body: formData,
+                    });
+                    const data = await response.json();
+                    alert(data.message);
+                    if (response.ok) {
+                        displayRegisteredMembers();
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("An error occurred. Please try again.");
+                }
+            });
+
+        async function displayRegisteredMembers() {
+            try {
+                const response = await fetch("http://localhost:3000/members");
+                const members = await response.json();
+                const registeredMembersList =
+                    document.getElementById("registeredMembers");
+                registeredMembersList.innerHTML = "";
+                members.forEach((member) => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${member.fullName} - ${member.branch} - ${member.section} - ${member.crn} - ${member.urn}`;
+                    registeredMembersList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        // Initial display of registered members
+        displayRegisteredMembers();
+    </script>
+</body>
+
+</html>
