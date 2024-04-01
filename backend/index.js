@@ -16,7 +16,7 @@ app.use(
 );
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/attendanceDB", {
+mongoose.connect("mongodb+srv://subodhrana390:subodhrana946@cluster0.g8y85oz.mongodb.net", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
