@@ -74,7 +74,7 @@
                 selectable: true,
                 dateClick: async function (info) {
                     const date = info.dateStr;
-                    fetch("http://localhost:3000/attendanceByDate", {
+                    fetch("https://attendence-nzxm.onrender.com/attendanceByDate", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
