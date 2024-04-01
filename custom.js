@@ -1,4 +1,4 @@
-let url = "http://localhost:3000";
+let url = "https://attendence-nzxm.onrender.com";
 const eventVenueCoords = { latitude: 30.8595727, longitude: 75.8638389 };
 const maxDistance = 50;
 
