@@ -77,7 +77,7 @@ document
   });
 
 let form = document.getElementById("attendanceForm");
-var msg = document.getElementById("message");
+let msg = document.getElementById("message");
 function openFormForTwoHours() {
   let now = new Date();
   const indiaTime = now.toLocaleTimeString("en-US", {
@@ -95,7 +95,6 @@ function openFormForTwoHours() {
   });
 
   console.log(indiaTime, scheduledTime);
-  console.log((msg.innerText = "hello"));
   form.style.display = "block";
 
   setTimeout(function () {
@@ -108,7 +107,7 @@ function openFormForTwoHours() {
  window.onload = function() {
                 what();
                 function what(){
-                    document.getElementById('message').innerText = '';
+                  msg.innerText = '';
                 };
             }
 window.onload = openFormForTwoHours;
