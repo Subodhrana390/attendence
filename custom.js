@@ -1,4 +1,4 @@
-let url = "https://attendence-nzxm.onrender.com";
+let url = "http://localhost:3000";
 const eventVenueCoords = { latitude: 30.8595727, longitude: 75.8638389 };
 const maxDistance = 50;
 
@@ -55,9 +55,6 @@ document
           },
         })
           .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
             return response.json();
           })
           .then((data) => {
@@ -65,8 +62,7 @@ document
             // You can perform additional actions here if needed
           })
           .catch((error) => {
-            console.error("There was an error!", error);
-            alert("Failed to record attendance. Please try again later.");
+            alert("Failed to record attendance. Please try again later");
           });
       } else {
         alert("You are not near the event venue.");
@@ -80,13 +76,26 @@ document
       };
   });
 
-
 let form = document.getElementById("attendanceForm");
 let msg = document.getElementById("message");
 
 function openFormForTwoHours() {
-  var now = new Date();
-  const scheduledTime = new Date("2024-04-01T15:56:00Z");
+  let now = new Date();
+  const indiaTime = now.toLocaleTimeString("en-US", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
+  const scheduledDate = new Date("2024-04-07T16:50:30.000+05:30");
+  const scheduledTime = scheduledDate.toLocaleTimeString("en-US", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
+
+  console.log(indiaTime);
   form.style.display = "block";
 
   setTimeout(function () {
@@ -94,3 +103,6 @@ function openFormForTwoHours() {
     msg.innerText = "No Form Available";
   }, scheduledTime - now);
 }
+
+// Call the function to open the form when the page loads
+window.onload = openFormForTwoHours;
