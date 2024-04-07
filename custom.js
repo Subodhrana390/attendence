@@ -1,6 +1,6 @@
-let url = "http://localhost:3000";
+let url = "https://attendence-nzxm.onrender.com";
 const eventVenueCoords = { latitude: 30.8595727, longitude: 75.8638389 };
-const maxDistance = 50;
+const maxDistance = 25;
 
 function isNearEventVenue(userCoords) {
   const distance = calculateDistance(userCoords, eventVenueCoords);
@@ -77,11 +77,11 @@ document
   });
 
 let form = document.getElementById("attendanceForm");
-let msg = document.getElementById("message");
+
 function openFormForTwoHours() {
-  let msg = document.getElementById("message");
-  msg.innerText = '';
-              
+  window.onload = function what() {
+    document.getElementById("message").innerHTML = "";
+  };
   let now = new Date();
   const indiaTime = now.toLocaleTimeString("en-US", {
     timeZone: "Asia/Kolkata",
@@ -102,7 +102,7 @@ function openFormForTwoHours() {
 
   setTimeout(function () {
     form.style.display = "none";
-    msg.innerText = "No Form Available";
+    document.getElementById("message").innerHTML = "No Form Available";
   }, scheduledTime - indiaTime);
 }
 
