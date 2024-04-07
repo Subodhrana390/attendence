@@ -78,7 +78,7 @@ document
 
 let form = document.getElementById("attendanceForm");
 var msg = document.getElementById("message");
-
+msg.innerText = "";
 function openFormForTwoHours() {
   let now = new Date();
   const indiaTime = now.toLocaleTimeString("en-US", {
