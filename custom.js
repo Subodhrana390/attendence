@@ -77,7 +77,7 @@ document
   });
 
 let form = document.getElementById("attendanceForm");
-let msg = document.getElementById("message");
+var msg = document.getElementById("message");
 
 function openFormForTwoHours() {
   let now = new Date();
@@ -95,13 +95,14 @@ function openFormForTwoHours() {
     day: "numeric",
   });
 
-  console.log(indiaTime);
+  console.log(indiaTime, scheduledTime);
+  console.log((msg.innerText = "hello"));
   form.style.display = "block";
 
   setTimeout(function () {
     form.style.display = "none";
     msg.innerText = "No Form Available";
-  }, scheduledTime - now);
+  }, scheduledTime - indiaTime);
 }
 
 // Call the function to open the form when the page loads
