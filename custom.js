@@ -104,7 +104,7 @@ function openFormForTwoHours() {
 }
 
 // Call the function to open the form when the page loads
-window.onload = function what() {
+window.onload = function () {
   document.getElementById("message").innerHTML = "";
   openFormForTwoHours();
 };
