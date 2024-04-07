@@ -78,7 +78,6 @@ document
 
 let form = document.getElementById("attendanceForm");
 var msg = document.getElementById("message");
-msg.innerText = "";
 function openFormForTwoHours() {
   let now = new Date();
   const indiaTime = now.toLocaleTimeString("en-US", {
@@ -106,4 +105,10 @@ function openFormForTwoHours() {
 }
 
 // Call the function to open the form when the page loads
+ window.onload = function() {
+                what();
+                function what(){
+                    document.getElementById('message').innerText = '';
+                };
+            }
 window.onload = openFormForTwoHours;
