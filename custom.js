@@ -79,9 +79,6 @@ document
 let form = document.getElementById("attendanceForm");
 
 function openFormForTwoHours() {
-  window.onload = function what() {
-    document.getElementById("message").innerHTML = "";
-  };
   let now = new Date();
   const indiaTime = now.toLocaleTimeString("en-US", {
     timeZone: "Asia/Kolkata",
@@ -107,4 +104,7 @@ function openFormForTwoHours() {
 }
 
 // Call the function to open the form when the page loads
-window.onload = openFormForTwoHours;
+window.onload = function what() {
+  document.getElementById("message").innerHTML = "";
+  openFormForTwoHours();
+};
