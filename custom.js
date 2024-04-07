@@ -1,6 +1,6 @@
 let url = "https://attendence-nzxm.onrender.com";
 const eventVenueCoords = { latitude: 30.8595727, longitude: 75.8638389 };
-const maxDistance = 25;
+const maxDistance = 250;
 
 function isNearEventVenue(userCoords) {
   const distance = calculateDistance(userCoords, eventVenueCoords);
